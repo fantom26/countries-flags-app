@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 const InputContainer = styled.label`
   background-color: var(--colors-ui-base);
-  padding: 10px 15px;
+  padding-left: 15px;
+  padding-right: 15px;
   display: flex;
   align-items: center;
 
@@ -28,13 +29,14 @@ const Input = styled.input.attrs({
   outline: none;
   background-color: transparent;
   color: var(--color-text);
+  min-height: 50px;
 `;
 
 // eslint-disable-next-line arrow-body-style
 export const Search = ({ searchStr, setSearchStr }) => {
   return (
     <InputContainer>
-      <IoSearch />
+      <IoSearch size="16px" />
       <Input onChange={(e) => setSearchStr(e.target.value)} value={searchStr} />
     </InputContainer>
   );

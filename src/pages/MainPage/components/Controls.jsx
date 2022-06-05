@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import styled from "styled-components";
+
 import { CustomSelect } from "./CustomSelect";
 import { Search } from "./Search";
 
@@ -11,13 +13,32 @@ const options = [
   { value: "Oceania", label: "Oceania" }
 ];
 
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 767px) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+`;
+
 export const Controls = () => {
   const [searchStr, setSearchStr] = useState("");
+  const [region, setRegion] = useState("");
 
   return (
-    <div>
+    <Wrapper>
       <Search searchStr={searchStr} setSearchStr={setSearchStr} />
-      <CustomSelect options={options} />
-    </div>
+      <CustomSelect
+        options={options}
+        placeholder="Filter by Region"
+        isClearable
+        isSearchable={false}
+        value={region}
+        onChange={setRegion}
+      />
+    </Wrapper>
   );
 };

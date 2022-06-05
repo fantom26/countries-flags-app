@@ -1,17 +1,17 @@
 import Select from "react-select";
 import styled from "styled-components";
 
-export const CustomSelect = styled(Select).atttr({
+export const CustomSelect = styled(Select).attrs({
   styles: {
     control: (provided) => ({
       ...provided,
       backgroundColor: "var(--colors-ui-base)",
       color: "var(--colors-text)",
       borderRadius: "var(--radii)",
-      padding: "0.25rem",
+      padding: "2.5px",
       border: "none",
       boxShadow: "var(--shadow)",
-      height: "50px"
+      minHeight: "50px"
     }),
     option: (provided, state) => ({
       ...provided,

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
 import { IoMoon, IoMoonOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Container } from "components/ui/Container";
+import { Container } from "components/ui";
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -18,8 +19,8 @@ const Wrapper = styled.div`
   padding-bottom: 15px;
 `;
 
-const Title = styled.a.attrs({
-  href: "/"
+const Title = styled(Link).attrs({
+  to: "/"
 })`
   color: var(--colors-text);
   font-size: var(--fs-sm);
@@ -33,11 +34,6 @@ const ModeSwitcher = styled.div`
   color: var(--colors-text);
   font-weight: var(--fw-bold);
   text-transform: capitalize;
-`;
-
-const ModeSwitcherSpan = styled.span`
-  display: inline-block;
-  margin-left: 10px;
 `;
 
 export const Header = () => {
@@ -56,11 +52,10 @@ export const Header = () => {
           <Title>Where is the world?</Title>
           <ModeSwitcher onClick={toggleTheme}>
             {theme === "light" ? (
-              <IoMoonOutline size="14px" />
+              <IoMoonOutline size="16px" />
             ) : (
-              <IoMoon size="14px" />
+              <IoMoon size="16px" />
             )}
-            <ModeSwitcherSpan>Light Theme</ModeSwitcherSpan>
           </ModeSwitcher>
         </Wrapper>
       </Container>

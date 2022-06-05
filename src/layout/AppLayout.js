@@ -1,6 +1,9 @@
+import { Suspense } from "react";
+
+import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
-import { Container } from "components/ui/Container";
+import { Loader } from "components/ui";
 
 const Wrapper = styled.main`
   padding-top: 20px;
@@ -11,8 +14,10 @@ const Wrapper = styled.main`
   }
 `;
 
-export const AppLayout = ({ children }) => (
+export const AppLayout = () => (
   <Wrapper>
-    <Container>{children}</Container>
+    <Suspense fallback={<Loader />}>
+      <Outlet />
+    </Suspense>
   </Wrapper>
 );

@@ -1,13 +1,7 @@
-import { AppLayout } from "layout/AppLayout";
-
-import { Controls } from "components/common/Controls";
-import { Header } from "components/common/Header";
+import { Router } from "components/common";
 
 export const App = () => (
   <>
-    <Header />
-    <AppLayout>
-      <Controls />
-    </AppLayout>
+    <Router />
   </>
 );
