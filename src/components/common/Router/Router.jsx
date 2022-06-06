@@ -11,8 +11,6 @@ export const Router = () => {
       <Route key={route.path} path={route.path} element={<route.component />} />
     ));
 
-  console.log("renderAppRoutes", renderAppRoutes());
-
   return (
     <Routes>
       <Route element={<IndexLayout />}>

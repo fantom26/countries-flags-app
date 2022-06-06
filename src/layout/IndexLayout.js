@@ -12,9 +12,15 @@ export const IndexLayout = () => {
   const { countries } = useSelector((state) => state.country);
 
   // Dispatch
-  const { getAllCountries } = useDispatchedActions();
+  const { getAllCountries, setTheme } = useDispatchedActions();
 
-  // // Get all counties
+  // Set default theme
+  useEffect(() => {
+    setTheme();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Get all counties
   useEffect(() => {
     if (!countries.isDataLoaded) {
       getAllCountries();
