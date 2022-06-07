@@ -17,7 +17,7 @@ const AppReducer = createSlice({
         localStorage.setItem("colorOfTheme", state.theme);
       }
     },
-    setTheme(state, action) {
+    setTheme(state) {
       if (!localStorage.getItem("colorOfTheme")) {
         localStorage.setItem("colorOfTheme", "light");
         state.theme = "light";
