@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { IoMoon, IoMoonOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
@@ -8,6 +8,8 @@ import styled from "styled-components";
 import { Container } from "components/ui";
 
 import { useDispatchedActions } from "hooks";
+
+import { AdaptiveFont } from "utils/adaptiveFont";
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -25,6 +27,7 @@ const Wrapper = styled.div`
 const Title = styled(Link).attrs({
   to: "/"
 })`
+  ${AdaptiveFont({ pcSize: 30, mobSize: 18 })};
   color: var(--colors-text);
   font-size: var(--fs-sm);
   text-decoration: none;
