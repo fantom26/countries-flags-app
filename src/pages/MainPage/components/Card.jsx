@@ -1,19 +1,22 @@
 import styled from "styled-components";
 
 const Wrapper = styled.article`
-  border-radius: var(--radii);
+  border-radius: var(--radius);
   background-color: car(--colors-ui-base);
   box-shadow: var(--shadow);
   cursor: pointer;
   overflow: hidden;
+
+  & + article {
+    @media (max-width: 460px) {
+      margin-top: 1.5rem;
+    }
+  }
 `;
 
 const CardImage = styled.img`
-  display: block;
   width: 100%;
-  height: 150px;
-  object-fit: cover;
-  object-position: center;
+  height: 15rem;
   box-shadow: var(--shadow);
 `;
 
@@ -22,23 +25,24 @@ const CardBody = styled.div`
 `;
 
 const CardTitle = styled.h3`
-  margin: 0;
   font-size: var(--fs-md);
   font-weight: var(--fw-bold);
 `;
 
 const CardList = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 1rem 0 0;
+  padding-top: 1rem;
 `;
 
 const CardListItem = styled.li`
   font-size: var(--fs-sm);
-  line-height: 1.5;
+  line-height: 150%;
   font-weight: var(--fw-light);
-  & > b {
+  & > span {
     font-weight: var(--fw-bold);
+  }
+
+  & + li {
+    margin-top: 0.5rem;
   }
 `;
 
@@ -50,7 +54,7 @@ export const Card = ({ img, name, info = [], onClick }) => (
       <CardList>
         {info.map((el) => (
           <CardListItem key={el.title}>
-            <b>{el.title}:</b> {el.description}
+            <span>{el.title}:</span> {el.description}
           </CardListItem>
         ))}
       </CardList>

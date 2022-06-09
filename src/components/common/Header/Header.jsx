@@ -20,8 +20,8 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 `;
 
 const Title = styled(Link).attrs({

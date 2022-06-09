@@ -7,7 +7,7 @@ export const CustomSelect = styled(Select).attrs({
       ...provided,
       backgroundColor: "var(--colors-ui-base)",
       color: "var(--colors-text)",
-      borderRadius: "var(--radii)",
+      borderRadius: "var(--radius)",
       padding: "2.5px",
       border: "none",
       boxShadow: "var(--shadow)",
@@ -24,7 +24,7 @@ export const CustomSelect = styled(Select).attrs({
   }
 })`
   width: 200px;
-  border-radius: var(--radii);
+  border-radius: var(--radius);
   font-family: var(--family);
   border: none;
 
