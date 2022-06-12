@@ -2,7 +2,7 @@ import { AppLayout, IndexLayout } from "layout";
 import { Route, Routes } from "react-router-dom";
 import { AppRoutes } from "routes";
 
-import { NotFoundPage } from "pages/NotFoundPage/NotFoundPage";
+import NotFoundPage from "pages/NotFoundPage/NotFoundPage";
 
 export const Router = () => {
   // Rendering routes

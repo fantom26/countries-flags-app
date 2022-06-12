@@ -1,8 +1,9 @@
 :root {
   /* Typography */
   --family: 'Nunito Sans', sans-serif;
-  --fs-sm: 14px;
-  --fs-md: 16px;
+  --fs-sm: 1.6rem;
+  --fs-md: 2rem;
+  --fs-lg: 2.4rem;
   --fw-light: 300;
   --fw-normal: 600;
   --fw-bold: 800;
@@ -14,5 +15,4 @@
   --clr-default-100: #fff;
   --clr-default-400: #181818;
   --clr-default-900: #000;
-  --clr-primary-400: #db554d;
 }

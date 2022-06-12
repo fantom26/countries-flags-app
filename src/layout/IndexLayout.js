@@ -3,22 +3,24 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { toast } from "react-toastify";
+import styled from "styled-components";
 
 import { Header } from "components/common/";
 
 import { useDispatchedActions } from "hooks/useDispatchedActions";
 
+const Main = styled.main`
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const IndexLayout = () => {
   const { countries } = useSelector((state) => state.country);
 
   // Dispatch
-  const { getAllCountries, setTheme } = useDispatchedActions();
-
-  // Set default theme
-  useEffect(() => {
-    setTheme();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { getAllCountries } = useDispatchedActions();
 
   // Get all counties
   useEffect(() => {
@@ -38,9 +40,9 @@ export const IndexLayout = () => {
   return (
     <>
       <Header />
-      <main>
+      <Main>
         <Outlet />
-      </main>
+      </Main>
     </>
   );
 };
