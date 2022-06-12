@@ -10,10 +10,7 @@ import { Header } from "components/common/";
 import { useDispatchedActions } from "hooks/useDispatchedActions";
 
 const Main = styled.main`
-  display: flex;
   flex-grow: 1;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const IndexLayout = () => {

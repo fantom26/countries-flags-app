@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useEffect } from "react";
+
 import { useSelector } from "react-redux";
 
 import { Container } from "components/ui";
@@ -7,11 +10,34 @@ import { List } from "./components/List";
 
 const MainPage = () => {
   const { countries } = useSelector((state) => state.country);
+
+  const [filteredCountries, setFilteredCountries] = useState(countries.data);
+
+  const handleSearch = (search, region) => {
+    let data = [...countries.data];
+
+    if (region) {
+      data = data.filter((c) => c.region.includes(region));
+    }
+
+    if (search) {
+      data = data.filter((c) =>
+        c.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    setFilteredCountries(data);
+  };
+
+  useEffect(() => {
+    handleSearch();
+    // eslint-disable-next-line
+  }, [countries]);
   return (
     <>
       <Container>
-        <Controls />
-        <List countries={countries.data} />
+        <Controls onSearch={handleSearch} />
+        <List countries={filteredCountries} />
       </Container>
     </>
   );
