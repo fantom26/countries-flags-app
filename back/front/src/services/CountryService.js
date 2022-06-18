@@ -1,4 +1,4 @@
-import {axiosInstance} from "../config"
+import { axiosInstance } from "config"
 const { REACT_APP_BASE_URL } = process.env;
 
 export class CountryService {
