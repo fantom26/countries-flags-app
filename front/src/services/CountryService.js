@@ -3,8 +3,10 @@ import axios from "axios";
 const { REACT_APP_BASE_URL } = process.env;
 
 export class CountryService {
-  static getAllCountries() {
-    return axios.get(`${REACT_APP_BASE_URL}all?fields=name,capital,flags,population,region`);
+  static getAllCountries(page, limit) {
+    return axios.get("http://localhost:5000/countries", {
+      params: { page, limit }
+    });
   }
 
   static searchByCountry(name) {

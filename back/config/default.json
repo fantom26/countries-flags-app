@@ -1,0 +1,4 @@
+{
+  "serverPort": 5000,
+  "urlDB": "mongodb+srv://Yehor:bBNw2FUBx59xwWsf@countries.v63h0.mongodb.net/?retryWrites=true&w=majority"
+}

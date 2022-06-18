@@ -22,7 +22,7 @@ export const IndexLayout = () => {
   // Get all counties
   useEffect(() => {
     if (!countries.isDataLoaded) {
-      getAllCountries();
+      getAllCountries(1, 8);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countries.isDataLoaded]);

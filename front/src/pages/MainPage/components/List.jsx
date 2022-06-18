@@ -31,7 +31,7 @@ const Cards = styled.section`
 
 export const List = ({ countries }) => {
   const navigate = useNavigate();
-
+  console.log("countries", countries);
   return (
     <Cards>
       {countries.map((country) => {
