@@ -1,15 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
-import config from "config";
 import cors from "cors";
+import dotenv from "dotenv";
 import { paginatedResults } from "./utils/paginatedResults.js";
 
 const app = express();
 app.use(cors());
-const PORT = config.get("serverPort");
-const DB_URL = config.get("urlDB");
+dotenv.config();
 
-const db = mongoose.connect(DB_URL);
+const db = mongoose.connect(process.env.MONGO_URL);
 
 const CountrySchema = new mongoose.Schema({
   name: {
@@ -49,6 +48,12 @@ app.get("/countries", paginatedResults(Country), (req, res) => {
   res.json(res.paginatedResults);
 });
 
-app.listen(PORT, () => {
-  console.log("Server started on port", PORT);
+app.use(express.static(path.join(__dirname, "/front/build")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/front/build', 'index.html'));
+});
+
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Server started on port");
 });
