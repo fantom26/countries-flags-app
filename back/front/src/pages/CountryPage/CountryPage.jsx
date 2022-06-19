@@ -1,5 +1,3 @@
-const CountryPage = () => {
-  return <div>CountryPage</div>;
-};
+const CountryPage = () => <div>CountryPage</div>;
 
 export default CountryPage;

@@ -1,4 +1,5 @@
-import { axiosInstance } from "config"
+import { axiosInstance } from "config";
+
 const { REACT_APP_BASE_URL } = process.env;
 
 export class CountryService {
@@ -9,7 +10,9 @@ export class CountryService {
   }
 
   static searchByCountry(name) {
-    return axiosInstance.get(`${REACT_APP_BASE_URL}name/`, { params: { name } });
+    return axiosInstance.get(`${REACT_APP_BASE_URL}name/`, {
+      params: { name }
+    });
   }
 
   static filterByCode(codes) {
