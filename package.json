@@ -11,7 +11,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "heroku-postbuild": "cd front && yarn && yarn build"
+    "heroku-postbuild": "cd front && npm install && npm run build"
   },
   "author": "Kravtsov Yehor",
   "license": "MIT",

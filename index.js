@@ -1,4 +1,6 @@
 import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -8,6 +10,10 @@ const app = express();
 app.use(cors());
 dotenv.config();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const PORT = process.env.PORT || 5000;
 const db = mongoose.connect(process.env.MONGO_URL);
 
 const CountrySchema = new mongoose.Schema({
@@ -50,10 +56,10 @@ app.get("/countries", paginatedResults(Country), (req, res) => {
 
 app.use(express.static(path.join(__dirname, "/front/build")));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/front/build', 'index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/front/build", "index.html"));
 });
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(PORT, () => {
   console.log("Server started on port");
 });
