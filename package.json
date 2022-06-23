@@ -1,6 +1,11 @@
 {
   "name": "back",
   "version": "1.0.0",
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "description": "backend for countries-flags-app",
   "type": "module",
   "main": "index.js",

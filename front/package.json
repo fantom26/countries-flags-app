@@ -2,11 +2,6 @@
   "name": "countries-flags-app",
   "version": "0.1.0",
   "private": true,
-  "browser": {
-    "fs": false,
-    "path": false,
-    "os": false
-  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
     "axios": "^0.27.2",
