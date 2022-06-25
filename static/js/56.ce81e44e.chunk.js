@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkcountries_flags_app=self.webpackChunkcountries_flags_app||[]).push([[56],{8056:function(e,n,u){u.r(n);var s=u(3329);n.default=function(){return(0,s.jsx)("div",{children:"CountryPage"})}}}]);
+//# sourceMappingURL=56.ce81e44e.chunk.js.map
