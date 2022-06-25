@@ -4,9 +4,9 @@ import { CountryService } from "services/CountryService";
 
 export const getAllCountries = createAsyncThunk(
   "country/getAllCountries",
-  async ({ page = 1, limit = 8 }, { rejectWithValue }) => {
+  async ([currentPage, limit], { rejectWithValue }) => {
     try {
-      const response = await CountryService.getAllCountries(page, limit);
+      const response = await CountryService.getAllCountries(currentPage, limit);
 
       if (response.response && response.response.status !== 200) {
         throw response;

@@ -1,19 +1,20 @@
-import { useState } from "react";
-import { useEffect } from "react";
+// import { useState } from "react";
+// import { useEffect } from "react";
 
 import { useSelector } from "react-redux";
 
 import { Container } from "components/ui";
 
-import { Controls } from "./components/Controls";
+// import { Controls } from "./components/Controls";
 import { List } from "./components/List";
 
 const MainPage = () => {
   const { countries } = useSelector((state) => state.country);
+
+  // eslint-disable-next-line no-console
   console.log("Main page countries", countries);
 
-  const [filteredCountries, setFilteredCountries] = useState(countries.data.results);
-  console.log("filteredCountries", filteredCountries);
+  // const [filteredCountries, setFilteredCountries] = useState(countries.data);
   // const handleSearch = (search, region) => {
   //   let data = [...countries.data];
 
@@ -38,7 +39,7 @@ const MainPage = () => {
     <>
       <Container>
         {/* <Controls onSearch={handleSearch} /> */}
-        <List countries={filteredCountries} />
+        <List countries={countries.data} />
       </Container>
     </>
   );

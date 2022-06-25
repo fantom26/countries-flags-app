@@ -31,10 +31,9 @@ const Cards = styled.section`
 
 export const List = ({ countries }) => {
   const navigate = useNavigate();
-  console.log("countries", countries);
   return (
     <Cards>
-      {countries.map((country) => {
+      {countries?.map((country) => {
         const countryInfo = {
           img: country.flags.svg,
           name: country.name,

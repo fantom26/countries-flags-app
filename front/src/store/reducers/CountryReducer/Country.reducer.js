@@ -6,6 +6,8 @@ import { getAllCountries } from "./Country.thunks";
 const initialState = {
   countries: {
     data: [],
+    total: 0,
+    limit: 12,
     isDataLoaded: false,
     isLoading: false,
     isFetchError: null
@@ -27,7 +29,11 @@ const CountryReducer = createSlice({
     },
     [getAllCountries.fulfilled]: (state, action) => {
       state.countries.isDataLoaded = true;
-      state.countries.data = action.payload;
+      state.countries.data = [
+        ...state.countries.data,
+        ...action.payload.results
+      ];
+      state.countries.total = action.payload.total;
       state.countries.isLoading = false;
     }
   }
