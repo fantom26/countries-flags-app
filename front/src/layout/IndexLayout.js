@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
@@ -15,38 +15,37 @@ const Main = styled.main`
 
 export const IndexLayout = () => {
   const { countries } = useSelector((state) => state.country);
-  const [currentPage, setCurrentPage] = useState(1);
+  const { currentPage, data, total } = useSelector(
+    (state) => state.country.countries
+  );
   const [fetching, setFetching] = useState(true);
 
   // Dispatch
-  const { getAllCountries } = useDispatchedActions();
-  console.log("outside currentPage", currentPage);
+  const { getCountriesByPageAndLimit } = useDispatchedActions();
 
   // Get countries
   useEffect(() => {
     if (fetching) {
-      try {
-        getAllCountries([currentPage, countries.limit]);
-      } catch (e) {
-        console.log("Error", e);
-      } finally {
-        setCurrentPage((prevState) => prevState + 1);
-        setFetching(false);
-        console.log("inside currentPage", currentPage);
-        console.log("first useEffect fetching", fetching);
-      }
+      getCountriesByPageAndLimit([currentPage, countries.limit]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetching]);
 
+  useEffect(() => {
+    setFetching(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countries]);
+
   const scrollHandler = (e) => {
-    if (
+    const heightCondition =
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <
-      100
-    ) {
+      100;
+
+    const lengthCondition = data.length < total;
+
+    if (heightCondition && lengthCondition) {
       setFetching(true);
-      console.log("Second useEffect fetching", fetching);
     }
   };
 
@@ -55,7 +54,7 @@ export const IndexLayout = () => {
     return function () {
       document.removeEventListener("scroll", scrollHandler);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Handling error

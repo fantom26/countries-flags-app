@@ -5,7 +5,7 @@ import { Container } from "components/ui";
 
 import { AdaptiveFont } from "utils/adaptiveFont";
 
-import { DarkThemeToggle } from "./components/DarkThemeToggle ";
+import { DarkThemeToggle } from "./components/DarkThemeToggle";
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled(Link).attrs({
-  to: "/dsfsdf"
+  to: "/"
 })`
   ${AdaptiveFont({ pcSize: 24, mobSize: 18 })};
   color: var(--colors-text);
@@ -34,7 +34,7 @@ export const Header = () => (
   <HeaderEl>
     <Container>
       <Wrapper>
-        <Title>Where is the world?</Title>
+        <Title>Countries-app</Title>
         <DarkThemeToggle />
       </Wrapper>
     </Container>

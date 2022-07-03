@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // Thunks
-import { getAllCountries } from "./Country.thunks";
+import { getCountriesByPageAndLimit } from "./Country.thunks";
 
 const initialState = {
   countries: {
     data: [],
     total: 0,
     limit: 12,
-    isDataLoaded: false,
+    currentPage: 1,
     isLoading: false,
     isFetchError: null
   }
@@ -19,21 +19,22 @@ const CountryReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [getAllCountries.pending]: (state) => {
+    [getCountriesByPageAndLimit.pending]: (state) => {
       state.countries.isLoading = true;
     },
-    [getAllCountries.rejected]: (state, action) => {
-      state.countries.isDataLoaded = false;
+    [getCountriesByPageAndLimit.rejected]: (state, action) => {
       state.countries.isFetchError = action.payload || true;
       state.countries.isLoading = false;
     },
-    [getAllCountries.fulfilled]: (state, action) => {
-      state.countries.isDataLoaded = true;
+    [getCountriesByPageAndLimit.fulfilled]: (state, action) => {
       state.countries.data = [
         ...state.countries.data,
         ...action.payload.results
       ];
-      state.countries.total = action.payload.total;
+      state.countries.currentPage += 1;
+      if (state.countries.total === 0) {
+        state.countries.total = action.payload.total;
+      }
       state.countries.isLoading = false;
     }
   }
@@ -41,7 +42,7 @@ const CountryReducer = createSlice({
 
 export const CountryReducerActions = {
   ...CountryReducer.actions,
-  getAllCountries
+  getCountriesByPageAndLimit
 };
 
 export default CountryReducer.reducer;

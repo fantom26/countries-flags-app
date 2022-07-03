@@ -1,6 +1,5 @@
 // import { useState } from "react";
 // import { useEffect } from "react";
-
 import { useSelector } from "react-redux";
 
 import { Container } from "components/ui";
@@ -12,7 +11,6 @@ const MainPage = () => {
   const { countries } = useSelector((state) => state.country);
 
   // eslint-disable-next-line no-console
-  console.log("Main page countries", countries);
 
   // const [filteredCountries, setFilteredCountries] = useState(countries.data);
   // const handleSearch = (search, region) => {
