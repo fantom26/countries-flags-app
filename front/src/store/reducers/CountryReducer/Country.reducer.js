@@ -6,8 +6,8 @@ import { getCountriesByPageAndLimit } from "./Country.thunks";
 const initialState = {
   countries: {
     data: [],
-    total: 0,
-    limit: 12,
+    total: 1,
+    limit: 100,
     currentPage: 1,
     isLoading: false,
     isFetchError: null
@@ -32,7 +32,7 @@ const CountryReducer = createSlice({
         ...action.payload.results
       ];
       state.countries.currentPage += 1;
-      if (state.countries.total === 0) {
+      if (state.countries.total === 1) {
         state.countries.total = action.payload.total;
       }
       state.countries.isLoading = false;

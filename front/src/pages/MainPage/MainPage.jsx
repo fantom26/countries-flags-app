@@ -1,43 +1,44 @@
-// import { useState } from "react";
-// import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+
 import { useSelector } from "react-redux";
 
 import { Container } from "components/ui";
+
+import { useDispatchedActions } from "hooks";
 
 // import { Controls } from "./components/Controls";
 import { List } from "./components/List";
 
 const MainPage = () => {
   const { countries } = useSelector((state) => state.country);
+  const { data, currentPage, total, limit } = countries;
+  const lastElement = useRef();
+  const observer = useRef();
 
-  // eslint-disable-next-line no-console
+  // Dispatch
+  const { getCountriesByPageAndLimit } = useDispatchedActions();
 
-  // const [filteredCountries, setFilteredCountries] = useState(countries.data);
-  // const handleSearch = (search, region) => {
-  //   let data = [...countries.data];
+  useEffect(() => {
+    if (countries.isLoading) return;
+    if (observer.current) observer.current.disconnect();
+    const callback = (entries) => {
+      if (entries[0].isIntersecting && total > data.length) {
+        getCountriesByPageAndLimit([currentPage, limit]);
+      }
+    };
+    observer.current = new IntersectionObserver(callback);
+    observer.current.observe(lastElement.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countries.isLoading]);
 
-  //   if (region) {
-  //     data = data.filter((c) => c.region.includes(region));
-  //   }
-
-  //   if (search) {
-  //     data = data.filter((c) =>
-  //       c.name.toLowerCase().includes(search.toLowerCase())
-  //     );
-  //   }
-
-  //   setFilteredCountries(data);
-  // };
-
-  // useEffect(() => {
-  //   handleSearch();
-  //   // eslint-disable-next-line
-  // }, [countries]);
   return (
     <>
       <Container>
-        {/* <Controls onSearch={handleSearch} /> */}
         <List countries={countries.data} />
+        <div
+          ref={lastElement}
+          style={{ height: 20, backgroundColor: "transparent" }}
+        ></div>
       </Container>
     </>
   );
