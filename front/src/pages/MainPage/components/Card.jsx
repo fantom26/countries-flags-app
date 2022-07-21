@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import { shadowColor } from "theme";
 
 const Wrapper = styled.article`
   border-radius: var(--radius);
   background-color: car(--colors-ui-base);
-  box-shadow: var(--shadow);
+  box-shadow: ${shadowColor};
+
   cursor: pointer;
   overflow: hidden;
 
@@ -17,7 +19,8 @@ const Wrapper = styled.article`
 const CardImage = styled.img`
   width: 100%;
   height: 15rem;
-  box-shadow: var(--shadow);
+  box-shadow: ${shadowColor};
+
 `;
 
 const CardBody = styled.div`

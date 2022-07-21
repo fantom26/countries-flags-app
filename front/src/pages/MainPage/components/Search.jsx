@@ -1,5 +1,6 @@
 import { IoSearch } from "react-icons/io5";
 import styled from "styled-components";
+import { shadowColor } from "theme";
 
 const InputContainer = styled.label`
   background-color: var(--colors-ui-base);
@@ -10,7 +11,7 @@ const InputContainer = styled.label`
   align-items: center;
 
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: ${shadowColor};
   width: 100%;
   margin-bottom: 1rem;
 

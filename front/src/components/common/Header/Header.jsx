@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { backgroundColor, shadowColor, textColor } from "theme";
 
 import { Container } from "components/ui";
 
@@ -8,8 +9,8 @@ import { AdaptiveFont } from "utils/adaptiveFont";
 import { DarkThemeToggle } from "./components/DarkThemeToggle";
 
 const HeaderEl = styled.header`
-  box-shadow: var(--shadow);
-  background-color: (--colors-ui-base);
+  background-color: ${backgroundColor};
+  box-shadow: ${shadowColor};
 `;
 
 const Wrapper = styled.div`
@@ -24,7 +25,7 @@ const Title = styled(Link).attrs({
   to: "/"
 })`
   ${AdaptiveFont({ pcSize: 24, mobSize: 18 })};
-  color: var(--colors-text);
+  color: ${textColor};
   font-size: var(--fs-sm);
   text-decoration: none;
   font-weight: var(--fw-bold);

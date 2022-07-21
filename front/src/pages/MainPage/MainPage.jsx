@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
 import { Container } from "components/ui";
+import { ScrollButton } from "components/ui/ScrollTop";
 
 import { useDispatchedActions } from "hooks";
 
@@ -26,6 +27,7 @@ const MainPage = () => {
         getCountriesByPageAndLimit([currentPage, limit]);
       }
     };
+    // eslint-disable-next-line no-undef
     observer.current = new IntersectionObserver(callback);
     observer.current.observe(lastElement.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,6 +41,7 @@ const MainPage = () => {
           ref={lastElement}
           style={{ height: 20, backgroundColor: "transparent" }}
         ></div>
+        <ScrollButton />
       </Container>
     </>
   );

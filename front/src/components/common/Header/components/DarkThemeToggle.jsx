@@ -1,61 +1,66 @@
+import { useState } from "react";
+
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { textColor } from "theme";
 
 import { useDispatchedActions } from "hooks";
 
-const Checkmark = styled.span`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
+import { IconSvg } from "utils/constants";
 
-  &::after {
-    content: "";
-    position: absolute;
-    display: none;
+import sound from "assets/audio/tick.mp3";
+
+const SwitchWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 1.5rem;
+
+  svg {
+    path {
+      fill: ${textColor};
+    }
   }
 `;
 
-const Label = styled.label`
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+const Switch = styled.span`
+  position: absolute;
+  inset: 0;
   cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  border-radius: 2.5rem;
+  background-color: #b6b6b6;
+  transition: background-color var(--transition) ease;
 
-  input {
+  &::before {
     position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
+    content: "";
+    left: 0.2rem;
+    top: 0.2rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    background-color: #333;
+    border-radius: 50%;
+    transition: transform var(--transition) ease;
+  }
+`;
+
+const SwitchToggle = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+
+  input[type="checkbox"] {
+    display: none;
   }
 
-  input:checked ~ ${Checkmark}::after {
-    display: block;
+  input[type="checkbox"]:checked + ${Switch}::before {
+    transform: translateX(25px);
   }
 
-  input:checked ~ ${Checkmark} {
-    background-color: #ccc;
-  }
-
-  ${Checkmark}::after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+  input[type="checkbox"]:checked + ${Switch} {
+    background-color: #0d0d0d;
   }
 `;
 
@@ -63,18 +68,28 @@ export const DarkThemeToggle = () => {
   const { darkThemeEnabled } = useSelector((state) => state.app);
   const { toggleTheme } = useDispatchedActions();
 
+  // eslint-disable-next-line no-undef
+  const [audio] = useState(typeof Audio !== "undefined" && new Audio(sound));
+
   const toggleThemeHandler = () => {
     toggleTheme();
+    if (audio) {
+      audio.play();
+    }
   };
 
   return (
-    <Label>
-      <input
-        type="checkbox"
-        checked={darkThemeEnabled}
-        onChange={toggleThemeHandler}
-      ></input>
-      <Checkmark></Checkmark>
-    </Label>
+    <SwitchWrapper>
+      <IconSvg tag="sun" />
+      <SwitchToggle>
+        <input
+          type="checkbox"
+          checked={darkThemeEnabled}
+          onChange={toggleThemeHandler}
+        />
+        <Switch />
+      </SwitchToggle>
+      <IconSvg tag="moon" />
+    </SwitchWrapper>
   );
 };

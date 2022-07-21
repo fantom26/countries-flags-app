@@ -7,7 +7,7 @@ const initialState = {
   countries: {
     data: [],
     total: 1,
-    limit: 100,
+    limit: 16,
     currentPage: 1,
     isLoading: false,
     isFetchError: null

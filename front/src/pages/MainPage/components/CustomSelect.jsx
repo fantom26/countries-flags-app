@@ -1,12 +1,13 @@
 import Select from "react-select";
 import styled from "styled-components";
+import { backgroundColor, shadowColor, textColor } from "theme";
 
 export const CustomSelect = styled(Select).attrs({
   styles: {
     control: (provided) => ({
       ...provided,
-      backgroundColor: "var(--colors-ui-base)",
-      color: "var(--colors-text)",
+      backgroundColor: `${backgroundColor}`,
+      color: `${textColor}`,
       borderRadius: "var(--radius)",
       padding: "2.5px",
       border: "none",
@@ -16,7 +17,7 @@ export const CustomSelect = styled(Select).attrs({
     option: (provided, state) => ({
       ...provided,
       cursor: "pointer",
-      color: "var(--colors-text)",
+      color: `${textColor}`,
       backgroundColor: state.isSelected
         ? "var(--colors-bg)"
         : "var(--colors-ui-base)"
@@ -29,7 +30,7 @@ export const CustomSelect = styled(Select).attrs({
   border: none;
 
   & > * {
-    box-shadow: var(--shadow);
+    box-shadow: ${shadowColor};
   }
 
   & input {
@@ -37,7 +38,7 @@ export const CustomSelect = styled(Select).attrs({
   }
 
   & * {
-    color: var(--colors-text) !important;
+    color: ${textColor} !important;
   }
 
   & > div[id] {

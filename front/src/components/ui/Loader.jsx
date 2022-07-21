@@ -1,5 +1,6 @@
 import { LoaderSvgSelector } from "images/loaderSvgSelector";
 import styled from "styled-components";
+import { backgroundColor } from "theme";
 
 const Edge = styled.div`
   position: absolute;
@@ -10,7 +11,7 @@ const Edge = styled.div`
   top: 50%;
   left: 50%;
   box-shadow: inset 0px 0px 20px #eee;
-  background-color: var(--colors-ui-base);
+  background-color: ${backgroundColor};
   transform: translate(-50%, -50%);
 `;
 
