@@ -29,8 +29,7 @@
     "prettier": "prettier -w .",
     "lint": "eslint -c .eslintrc src --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "yarn lint --fix",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -57,7 +56,6 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "gh-pages": "^4.0.0",
     "nth-check": ">=2.0.1",
     "postcss": "^8.4.13",
     "prettier": "^2.6.2",
