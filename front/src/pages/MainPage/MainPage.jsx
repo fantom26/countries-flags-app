@@ -19,6 +19,7 @@ const MainPage = () => {
   // Dispatch
   const { getCountriesByPageAndLimit } = useDispatchedActions();
 
+  // Infinity scroll
   useEffect(() => {
     if (countries.isLoading) return;
     if (observer.current) observer.current.disconnect();
@@ -34,16 +35,14 @@ const MainPage = () => {
   }, [countries.isLoading]);
 
   return (
-    <>
-      <Container>
-        <List countries={countries.data} />
-        <div
-          ref={lastElement}
-          style={{ height: 20, backgroundColor: "transparent" }}
-        ></div>
-        <ScrollButton />
-      </Container>
-    </>
+    <Container>
+      <List countries={countries.data} />
+      <div
+        ref={lastElement}
+        style={{ height: 20, backgroundColor: "transparent" }}
+      ></div>
+      <ScrollButton />
+    </Container>
   );
 };
 

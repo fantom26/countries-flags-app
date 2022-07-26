@@ -32,6 +32,17 @@ export const IconSvg = ({ tag }) => {
       >
         <path d="M13 20V7.83L18.59 13.42L20 12L12 4L4 12L5.41 13.41L11 7.83L11 20H13Z" />
       </svg>
+    ),
+    arrowBack: (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M11.5836 19.7955L13.2314 18.1619L8.90607 13.8366H19.041V11.4361H8.90607L13.2314 7.1179L11.5836 5.47727L4.42454 12.6364L11.5836 19.7955Z" />
+      </svg>
     )
   };
 
