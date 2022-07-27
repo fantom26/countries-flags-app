@@ -1,19 +1,18 @@
-import { IoSearch } from "react-icons/io5";
 import styled from "styled-components";
 import { shadowColor } from "theme";
 
 const InputContainer = styled.label`
-  background-color: var(--colors-ui-base);
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  margin-right: 1.5rem;
-  display: flex;
   align-items: center;
-
+  background-color: var(--colors-ui-base);
   border-radius: var(--radius);
   box-shadow: ${shadowColor};
-  width: 100%;
+  display: flex;
   margin-bottom: 1rem;
+
+  margin-right: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  width: 100%;
 
   @media (min-width: 767px) {
     margin-bottom: initial;
@@ -38,7 +37,6 @@ const Input = styled.input.attrs({
 export const Search = ({ searchStr, setSearchStr }) => {
   return (
     <InputContainer>
-      <IoSearch size="16px" />
       <Input onChange={(e) => setSearchStr(e.target.value)} value={searchStr} />
     </InputContainer>
   );

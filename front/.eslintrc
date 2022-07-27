@@ -33,13 +33,14 @@
     "setTimeout": "writable",
     "Set": "writable"
   },
-  "plugins": ["react", "react-hooks", "import"],
+  "plugins": ["react", "react-hooks", "import", "better-styled-components"],
   "settings": {
     "react": {
       "version": "detect"
     }
   },
   "rules": {
+    "better-styled-components/sort-declarations-alphabetically": 2,
     // BASE RULES
     // Кавычки
     "quotes": ["warn", "double"],

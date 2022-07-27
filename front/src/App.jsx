@@ -5,14 +5,14 @@ import { backgroundColor, textColor } from "theme";
 import { Router } from "components/common";
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  width: 100%;
-  min-width: 320px;
-  min-height: 100vh;
   background-color: ${backgroundColor};
   color: ${textColor};
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 37.5rem;
+  overflow: hidden;
+  width: 100%;
 `;
 
 export const App = () => (

@@ -43,6 +43,36 @@ export const IconSvg = ({ tag }) => {
       >
         <path d="M11.5836 19.7955L13.2314 18.1619L8.90607 13.8366H19.041V11.4361H8.90607L13.2314 7.1179L11.5836 5.47727L4.42454 12.6364L11.5836 19.7955Z" />
       </svg>
+    ),
+    grid: (
+      <svg
+        width="30"
+        height="30"
+        viewBox="0 0 30 30"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect x="16" y="16" width="14" height="14" />
+        <rect y="16" width="14" height="14" />
+        <rect x="16" width="14" height="14" />
+        <rect width="14" height="14" />
+      </svg>
+    ),
+    list: (
+      <svg
+        width="40"
+        height="30"
+        viewBox="0 0 40 30"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect y="11" width="8" height="8" rx="4" />
+        <rect x="10" y="11" width="30" height="8" />
+        <rect width="8" height="8" rx="4" />
+        <rect x="10" width="30" height="8" />
+        <rect y="22" width="8" height="8" rx="4" />
+        <rect x="10" y="22" width="30" height="8" />
+      </svg>
     )
   };
 

@@ -1,9 +1,9 @@
 @import "./styles/settings/normalize.css";
 @import "./styles/variables.css";
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
 
 body {
     margin: 0;
     font-family: var(--family);
-    font-weight: var(--fw-light);
+    font-weight: 400;
 }

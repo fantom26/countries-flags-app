@@ -1,46 +1,74 @@
 import { useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { backgroundColor, shadowColor } from "theme";
 
 import { CountryService } from "services/CountryService";
 
 import { AdaptiveFont } from "utils/adaptiveFont";
 
+import { Meta } from "./Meta";
+
 const Wrapper = styled.section`
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
   margin-top: 3rem;
+
+  @media (max-width: 1100px) {
+    flex-direction: column;
+  }
 `;
 
 const InfoInner = styled.div`
   margin-left: 2rem;
-  width: 100%;
   max-width: 60rem;
+  width: 100%;
+
+  @media (max-width: 1100px) {
+    margin-left: initial;
+    margin-top: 2rem;
+    max-width: initial;
+  }
 `;
 
 const InfoImage = styled.img`
-  width: 100%;
-  max-width: 50rem;
   height: auto;
+  max-width: 50rem;
   object-fit: cover;
+  width: 100%;
+
+  @media (max-width: 1100px) {
+    max-width: initial;
+  }
 `;
 
 const InfoTitle = styled.h1`
-  margin-bottom: 2rem;
   font-weight: 700;
+  margin-bottom: 2rem;
   ${AdaptiveFont({ pcSize: 40, mobSize: 20 })};
 `;
 
 const ListGroup = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 460px) {
+    display: block;
+  }
 `;
 
 const List = styled.ul`
   flex: 0 0 48%;
+
+  @media (max-width: 460px) {
+    flex: initial;
+  }
+
+  & + ul {
+    @media (max-width: 460px) {
+      margin-top: 1rem;
+    }
+  }
 `;
 
 const ListItem = styled.li`
@@ -57,41 +85,6 @@ const ListItemTitle = styled.h2`
   display: inline-block;
 `;
 
-const Meta = styled.div`
-  margin-top: 3rem;
-  display: flex;
-  align-items: center;
-
-  span {
-    display: inline-block;
-    margin-left: 2rem;
-    font-weight: 700;
-    ${AdaptiveFont({ pcSize: 18, mobSize: 16 })};
-    text-decoration: underline;
-  }
-`;
-
-const TagGroup = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
-  margin-left: 1rem;
-`;
-
-const Tag = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  border-radius: var(--radius);
-  text-align: center;
-  word-break: break-all;
-  ${AdaptiveFont({ pcSize: 16, mobSize: 14 })};
-  background-color: ${backgroundColor};
-  box-shadow: ${shadowColor};
-  cursor: pointer;
-`;
-
 export const Info = (props) => {
   const {
     name,
@@ -106,8 +99,6 @@ export const Info = (props) => {
     languages = [],
     borders = []
   } = props;
-
-  const navigate = useNavigate();
 
   const [neighbors, setNeighbors] = useState([]);
 
@@ -145,39 +136,26 @@ export const Info = (props) => {
           </List>
           <List>
             <ListItem>
-              <ListItemTitle>Top Level Domain</ListItemTitle>
+              <ListItemTitle>Top Level Domain: </ListItemTitle>
               {topLevelDomain.map((d) => (
-                <span key={d}>{d}</span>
+                <span key={d}> {d}</span>
               ))}
             </ListItem>
             <ListItem>
-              <ListItemTitle>Currency</ListItemTitle>
+              <ListItemTitle>Currency: </ListItemTitle>
               {currencies.map((c) => (
-                <span key={c.code}>{c.name} </span>
+                <span key={c.code}> {c.name} </span>
               ))}
             </ListItem>
             <ListItem>
-              <ListItemTitle>Top Level Domain</ListItemTitle>
+              <ListItemTitle>Top Level Domain: </ListItemTitle>
               {languages.map((l) => (
-                <span key={l.name}>{l.name}</span>
+                <span key={l.name}> {l.name}</span>
               ))}
             </ListItem>
           </List>
         </ListGroup>
-        <Meta>
-          <ListItemTitle>Border Countries</ListItemTitle>
-          {!borders.length ? (
-            <span>There is no border countries</span>
-          ) : (
-            <TagGroup>
-              {neighbors.map((b) => (
-                <Tag key={b} onClick={() => navigate(`/country/${b}`)}>
-                  {b}
-                </Tag>
-              ))}
-            </TagGroup>
-          )}
-        </Meta>
+        <Meta borders={borders} neighbors={neighbors} />
       </InfoInner>
     </Wrapper>
   );

@@ -3,28 +3,28 @@ import styled from "styled-components";
 import { backgroundColor } from "theme";
 
 const Edge = styled.div`
-  position: absolute;
-  border-radius: 50%;
-  overflow: hidden;
-  width: 125px;
-  height: 125px;
-  top: 50%;
-  left: 50%;
-  box-shadow: inset 0px 0px 20px #eee;
   background-color: ${backgroundColor};
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 20px #eee;
+  height: 125px;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
   transform: translate(-50%, -50%);
+  width: 125px;
 `;
 
 const SvgInner = styled.div`
   svg {
-    position: absolute;
-    fill-opacity: 0;
-    stroke: #aaa;
-    stroke-opacity: 1;
-    stroke-width: 2;
-    stroke-dasharray: 67rem;
     animation: draw 5s infinite ease-in-out alternate,
       rotate 5s -2.5s infinite ease-in-out reverse;
+    fill-opacity: 0;
+    position: absolute;
+    stroke: #aaa;
+    stroke-dasharray: 67rem;
+    stroke-opacity: 1;
+    stroke-width: 2;
 
     @keyframes draw {
       0% {

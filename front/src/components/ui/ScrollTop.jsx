@@ -6,20 +6,20 @@ import { backgroundColor, textColor } from "theme";
 import { IconSvg } from "utils/constants";
 
 export const Button = styled.div`
-  position: fixed;
-  right: 4rem;
-  bottom: 2rem;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  background-color: ${backgroundColor};
   border: 0.1rem solid ${textColor};
   border-radius: 50%;
-  min-width: 5.4rem;
-  min-height: 5.4rem;
-  z-index: 1;
+  bottom: 2rem;
   cursor: pointer;
-  background-color: ${backgroundColor};
+  display: flex;
+  justify-content: center;
+  min-height: 5.4rem;
+  min-width: 5.4rem;
+  position: fixed;
+  right: 4rem;
   transition: visibility var(--transition), opacity var(--transition);
+  z-index: 1;
 
   svg {
     path {

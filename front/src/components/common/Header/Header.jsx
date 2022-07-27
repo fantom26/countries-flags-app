@@ -14,11 +14,11 @@ const HeaderEl = styled.header`
 `;
 
 const Wrapper = styled.div`
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
 `;
 
 const Title = styled(Link).attrs({
@@ -26,9 +26,8 @@ const Title = styled(Link).attrs({
 })`
   ${AdaptiveFont({ pcSize: 24, mobSize: 18 })};
   color: ${textColor};
-  font-size: var(--fs-sm);
   text-decoration: none;
-  font-weight: var(--fw-bold);
+  font-weight: 700;
 `;
 
 export const Header = () => (

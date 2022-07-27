@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  darkThemeEnabled: false
+  darkThemeEnabled: false,
+  view: "grid"
 };
 
 const AppReducer = createSlice({
@@ -10,6 +11,15 @@ const AppReducer = createSlice({
   reducers: {
     toggleTheme(state) {
       state.darkThemeEnabled = !state.darkThemeEnabled;
+    },
+    toggleView(state, action) {
+      if (
+        action.payload.target.closest("button").getAttribute("tag") === "list"
+      ) {
+        state.view = "list";
+      } else {
+        state.view = "grid";
+      }
     }
   }
 });

@@ -13,8 +13,8 @@ import { Button } from "./components/Button";
 import { Info } from "./components/Info";
 
 const CountrySection = styled.section`
-  padding-top: 2rem;
   padding-bottom: 2rem;
+  padding-top: 2rem;
 `;
 
 const CountryPage = () => {

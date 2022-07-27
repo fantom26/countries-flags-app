@@ -4,19 +4,19 @@ import { shadowColor, textColor } from "theme";
 import { AdaptiveFont } from "utils/adaptiveFont";
 
 export const Button = styled.button`
-  display: flex;
   align-items: center;
+  background-color: var(--colors-ui-base);
   border: none;
   border-radius: var(--radius);
+  box-shadow: ${shadowColor};
+  color: var(--color-text);
+  display: flex;
+  font-weight: 700;
+  min-height: 4rem;
+  ${AdaptiveFont({ pcSize: 18, mobSize: 16 })};
+  min-width: 7rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  min-height: 4rem;
-  min-width: 7rem;
-  font-weight: 700;
-  ${AdaptiveFont({ pcSize: 18, mobSize: 16 })};
-  color: var(--color-text);
-  box-shadow: ${shadowColor};
-  background-color: var(--colors-ui-base);
 
   svg {
     margin-right: 0.6rem;

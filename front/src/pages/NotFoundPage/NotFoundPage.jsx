@@ -6,9 +6,9 @@ import { Container } from "components/ui";
 import { AdaptiveFont } from "utils/adaptiveFont";
 
 const Main = styled.main`
+  align-items: center;
   display: flex;
   flex-grow: 1;
-  align-items: center;
   justify-content: center;
 `;
 
@@ -17,10 +17,10 @@ const UpdatedContainer = styled(Container)`
 `;
 
 const Inner = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
+  font-weight: 700;
   justify-content: center;
-  font-weight: var(--fw-bold);
   ${AdaptiveFont({ pcSize: 36, mobSize: 18 })};
 `;
 

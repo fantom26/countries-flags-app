@@ -11,8 +11,8 @@ import { IconSvg } from "utils/constants";
 import sound from "assets/audio/tick.mp3";
 
 const SwitchWrapper = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
   margin-left: 1.5rem;
 
   svg {
@@ -23,33 +23,33 @@ const SwitchWrapper = styled.div`
 `;
 
 const Switch = styled.span`
-  position: absolute;
-  inset: 0;
-  cursor: pointer;
-  border-radius: 2.5rem;
   background-color: #b6b6b6;
+  border-radius: 2.5rem;
+  cursor: pointer;
+  inset: 0;
+  position: absolute;
   transition: background-color var(--transition) ease;
 
   &::before {
-    position: absolute;
-    content: "";
-    left: 0.2rem;
-    top: 0.2rem;
-    width: 2.1rem;
-    height: 2.1rem;
     background-color: #333;
     border-radius: 50%;
+    content: "";
+    height: 2.1rem;
+    left: 0.2rem;
+    position: absolute;
+    top: 0.2rem;
     transition: transform var(--transition) ease;
+    width: 2.1rem;
   }
 `;
 
 const SwitchToggle = styled.label`
-  position: relative;
   display: inline-block;
-  width: 5rem;
   height: 2.5rem;
-  margin-right: 1rem;
   margin-left: 1rem;
+  margin-right: 1rem;
+  position: relative;
+  width: 5rem;
 
   input[type="checkbox"] {
     display: none;
