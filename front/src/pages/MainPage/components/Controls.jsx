@@ -1,4 +1,6 @@
-// import { useEffect, useState } from "react";
+import { useState } from "react";
+
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { textColor } from "theme";
 
@@ -6,27 +8,33 @@ import { useDispatchedActions } from "hooks";
 
 import { IconSvg } from "utils/constants";
 
-// import { CustomSelect } from "./CustomSelect";
-// import { Search } from "./Search";
-
-// const options = [
-//   { value: "Africa", label: "Africa" },
-//   { value: "America", label: "America" },
-//   { value: "Asia", label: "Asia" },
-//   { value: "Europe", label: "Europe" },
-//   { value: "Oceania", label: "Oceania" }
-// ];
+import { CustomSelect } from "./CustomSelect";
+import { Search } from "./Search";
 
 const Wrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
+
+  @media (max-width: 576px) {
+    align-items: initial;
+    flex-direction: column;
+  }
 `;
 
 const ListOrGrid = styled.div`
   align-items: center;
   display: flex;
+  margin-left: auto;
+  margin-right: 2rem;
+
+  @media (max-width: 576px) {
+    margin-left: initial;
+    margin-right: initial;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 
   button {
     svg {
@@ -41,31 +49,19 @@ const ListOrGrid = styled.div`
   }
 `;
 
-// export const Controls = ({ onSearch }) => {
 export const Controls = () => {
-  // const [searchStr, setSearchStr] = useState("");
-  // const [region, setRegion] = useState("");
+  const [searchStr, setSearchStr] = useState("");
+  const [region, setRegion] = useState("");
 
-  // useEffect(() => {
-  //   const regionValue = region?.value || "";
-  //   onSearch(searchStr, regionValue);
+  const { regions } = useSelector((state) => state.country.countries);
 
-  //   // eslint-disable-next-line
-  // }, [searchStr, region]);
+  const options = regions.map((region) => ({ value: region, label: region }));
 
   const { toggleView } = useDispatchedActions();
 
   return (
     <Wrapper>
-      {/* <Search searchStr={searchStr} setSearchStr={setSearchStr} /> */}
-      {/* <CustomSelect
-        options={options}
-        placeholder="Filter by Region"
-        isClearable
-        isSearchable={false}
-        value={region}
-        onChange={setRegion}
-      /> */}
+      <Search searchStr={searchStr} setSearchStr={setSearchStr} />
       <ListOrGrid>
         <button tag="list" onClick={toggleView}>
           <IconSvg tag="list" />
@@ -74,6 +70,14 @@ export const Controls = () => {
           <IconSvg tag="grid" />
         </button>
       </ListOrGrid>
+      <CustomSelect
+        options={options}
+        placeholder="Filter by Region"
+        isClearable
+        isSearchable={false}
+        value={region}
+        onChange={setRegion}
+      />
     </Wrapper>
   );
 };

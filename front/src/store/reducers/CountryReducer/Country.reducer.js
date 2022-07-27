@@ -9,6 +9,7 @@ const initialState = {
     total: 1,
     limit: 16,
     currentPage: 1,
+    regions: [],
     isLoading: false,
     isFetchError: null
   }
@@ -29,8 +30,9 @@ const CountryReducer = createSlice({
     [getCountriesByPageAndLimit.fulfilled]: (state, action) => {
       state.countries.data = [
         ...state.countries.data,
-        ...action.payload.results
+        ...action.payload.countries
       ];
+      state.countries.regions = [...action.payload.regions];
       state.countries.currentPage += 1;
       if (state.countries.total === 1) {
         state.countries.total = action.payload.total;

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { shadowColor } from "theme";
 
+import { IconSvg } from "utils/constants";
+
 const InputContainer = styled.label`
   align-items: center;
   background-color: var(--colors-ui-base);
@@ -10,14 +12,10 @@ const InputContainer = styled.label`
   margin-bottom: 1rem;
 
   margin-right: 1.5rem;
+  max-width: 20rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   width: 100%;
-
-  @media (min-width: 767px) {
-    margin-bottom: initial;
-    max-width: 28rem;
-  }
 `;
 
 const Input = styled.input.attrs({
@@ -37,6 +35,7 @@ const Input = styled.input.attrs({
 export const Search = ({ searchStr, setSearchStr }) => {
   return (
     <InputContainer>
+      <IconSvg tag="search" />
       <Input onChange={(e) => setSearchStr(e.target.value)} value={searchStr} />
     </InputContainer>
   );

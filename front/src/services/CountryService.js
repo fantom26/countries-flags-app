@@ -4,10 +4,13 @@ import { axiosInstance } from "config";
 const { REACT_APP_BASE_URL } = process.env;
 
 export class CountryService {
-  static getCountriesByPageAndLimit(page, limit) {
+  static getCountriesByPageAndLimit(page, limit, region, search) {
     return axiosInstance.get("/countries", {
-      params: { page, limit }
+      params: { page, limit, region, search }
     });
+    // return axios.get("http://localhost:5000/countries", {
+    //   params: { page, limit, region, search }
+    // });
   }
 
   static searchByCountry(name) {
