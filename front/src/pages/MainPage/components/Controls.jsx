@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { textColor } from "theme";
@@ -17,9 +15,8 @@ const Wrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 2rem;
 
-  @media (max-width: 576px) {
-    align-items: initial;
-    flex-direction: column;
+  @media (max-width: 767px) {
+    flex-wrap: wrap;
   }
 `;
 
@@ -29,11 +26,8 @@ const ListOrGrid = styled.div`
   margin-left: auto;
   margin-right: 2rem;
 
-  @media (max-width: 576px) {
-    margin-left: initial;
+  @media (max-width: 767px) {
     margin-right: initial;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
   }
 
   button {
@@ -50,18 +44,20 @@ const ListOrGrid = styled.div`
 `;
 
 export const Controls = () => {
-  const [searchStr, setSearchStr] = useState("");
-  const [region, setRegion] = useState("");
-
   const { regions } = useSelector((state) => state.country.countries);
+  const { region } = useSelector((state) => state.country);
 
   const options = regions.map((region) => ({ value: region, label: region }));
 
-  const { toggleView } = useDispatchedActions();
+  const { toggleView, regionToggler } = useDispatchedActions();
+
+  const regionHandler = (region) => {
+    regionToggler(region);
+  };
 
   return (
     <Wrapper>
-      <Search searchStr={searchStr} setSearchStr={setSearchStr} />
+      <Search />
       <ListOrGrid>
         <button tag="list" onClick={toggleView}>
           <IconSvg tag="list" />
@@ -76,7 +72,10 @@ export const Controls = () => {
         isClearable
         isSearchable={false}
         value={region}
-        onChange={setRegion}
+        onChange={(e) => regionHandler(e)}
+        components={{
+          IndicatorSeparator: () => null
+        }}
       />
     </Wrapper>
   );

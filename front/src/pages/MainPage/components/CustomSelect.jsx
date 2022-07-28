@@ -7,27 +7,37 @@ export const CustomSelect = styled(Select).attrs({
     control: (provided) => ({
       ...provided,
       backgroundColor: `${backgroundColor}`,
-      color: `${textColor}`,
-      borderRadius: "var(--radius)",
-      padding: "2.5px",
       border: "none",
-      boxShadow: "var(--shadow)",
-      minHeight: "50px"
+      borderRadius: "var(--radius)",
+      boxShadow: `${shadowColor}`,
+      color: `${textColor}`,
+      fontSize: "1.6rem",
+      padding: "2.5px",
+      minHeight: "50px",
+      minWidth: "200px"
     }),
     option: (provided, state) => ({
       ...provided,
       cursor: "pointer",
-      color: `${textColor}`,
-      backgroundColor: state.isSelected
-        ? "var(--colors-bg)"
-        : "var(--colors-ui-base)"
+      color: state.isSelected ? `${backgroundColor}` : `${textColor}`,
+      fontSize: "1.6rem",
+      backgroundColor: state.isSelected ? `${textColor}` : `${backgroundColor}`
+    }),
+
+    singleValue: (provided) => ({
+      ...provided,
+      color: "#808E88",
+      fontSize: "1.6rem"
     })
   }
 })`
-  width: 200px;
   border-radius: var(--radius);
-  font-family: var(--family);
   border: none;
+
+  @media (max-width: 767px) {
+    margin-top: 2rem;
+    flex-basis: 100%;
+  }
 
   & > * {
     box-shadow: ${shadowColor};
@@ -42,6 +52,6 @@ export const CustomSelect = styled(Select).attrs({
   }
 
   & > div[id] {
-    background-color: var(--colors-ui-base);
+    background-color: ${backgroundColor};
   }
 `;

@@ -21,9 +21,29 @@ const MainPage = () => {
   const { data, currentPage, total, limit } = countries;
   const lastElement = useRef();
   const observer = useRef();
+  const { search, region } = useSelector((state) => state.country);
 
   // Dispatch
-  const { getCountriesByPageAndLimit } = useDispatchedActions();
+  const { getCountriesByPageAndLimit, clearCountries, defaultCurrentPage } =
+    useDispatchedActions();
+
+  useEffect(() => {
+    if (search && region === null) {
+      clearCountries();
+      defaultCurrentPage();
+      getCountriesByPageAndLimit({ currentPage, limit, search });
+    } else if (!search && region !== null) {
+      clearCountries();
+      defaultCurrentPage();
+      getCountriesByPageAndLimit({ currentPage, limit, region });
+    }
+    if (search && region !== null) {
+      clearCountries();
+      defaultCurrentPage();
+      getCountriesByPageAndLimit({ currentPage, limit, region, search });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, region]);
 
   // Infinity scroll
   useEffect(() => {
@@ -31,7 +51,7 @@ const MainPage = () => {
     if (observer.current) observer.current.disconnect();
     const callback = (entries) => {
       if (entries[0].isIntersecting && total > data.length) {
-        getCountriesByPageAndLimit([currentPage, limit]);
+        getCountriesByPageAndLimit({ currentPage, limit, region, search });
       }
     };
     // eslint-disable-next-line no-undef
@@ -44,7 +64,11 @@ const MainPage = () => {
     <Wrapper>
       <Container>
         <Controls />
-        <List loading={countries.isLoading} countries={countries.data} />
+        <List
+          // lastElement={lastElement}
+          loading={countries.isLoading}
+          countries={countries.data}
+        />
         <div
           ref={lastElement}
           style={{ height: 20, backgroundColor: "transparent" }}

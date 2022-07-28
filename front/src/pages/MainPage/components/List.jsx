@@ -57,7 +57,7 @@ export const List = ({ loading, countries }) => {
 
   return (
     <Cards className={defineClasses()}>
-      {countries?.map((country) => {
+      {countries?.map((country, index) => {
         const countryInfo = {
           img: country.flags.svg,
           name: country.name,
@@ -76,6 +76,21 @@ export const List = ({ loading, countries }) => {
             }
           ]
         };
+
+        if (countries.length - 1 === index) {
+          return (
+            <Card
+              // ref={lastElement}
+              onClick={() =>
+                navigate(`country/${country.name}`, { replace: true })
+              }
+              style={{ backgroundColor: "red" }}
+              view={view}
+              key={country.name}
+              {...countryInfo}
+            />
+          );
+        }
         return (
           <Card
             onClick={() =>

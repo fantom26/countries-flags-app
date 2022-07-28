@@ -4,18 +4,35 @@ import { CountryService } from "services/CountryService";
 
 export const getCountriesByPageAndLimit = createAsyncThunk(
   "country/getCountriesByPageAndLimit",
-  async ([currentPage, limit], { rejectWithValue }) => {
+  async ({ currentPage, limit, region, search }, { rejectWithValue }) => {
     try {
-      const response = await CountryService.getCountriesByPageAndLimit(
-        currentPage,
-        limit
-      );
+      if (region !== null) {
+        const response = await CountryService.getCountriesByPageAndLimit(
+          currentPage,
+          limit,
+          region.value,
+          search
+        );
 
-      if (response.response && response.response.status !== 200) {
-        throw response;
+        if (response.response && response.response.status !== 200) {
+          throw response;
+        }
+
+        return response.data;
+      } else {
+        const response = await CountryService.getCountriesByPageAndLimit(
+          currentPage,
+          limit,
+          region,
+          search
+        );
+
+        if (response.response && response.response.status !== 200) {
+          throw response;
+        }
+
+        return response.data;
       }
-
-      return response.data;
     } catch (e) {
       return rejectWithValue(e.response.data.error);
     }

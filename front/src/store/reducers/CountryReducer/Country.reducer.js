@@ -12,13 +12,28 @@ const initialState = {
     regions: [],
     isLoading: false,
     isFetchError: null
-  }
+  },
+  search: "",
+  region: null
 };
 
 const CountryReducer = createSlice({
   name: "country",
   initialState,
-  reducers: {},
+  reducers: {
+    clearCountries(state) {
+      state.countries.data = [];
+    },
+    defaultCurrentPage(state) {
+      state.countries.currentPage = 1;
+    },
+    searchHandler(state, action) {
+      state.search = action.payload;
+    },
+    regionToggler(state, action) {
+      state.region = action.payload;
+    }
+  },
   extraReducers: {
     [getCountriesByPageAndLimit.pending]: (state) => {
       state.countries.isLoading = true;
