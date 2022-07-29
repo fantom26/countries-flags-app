@@ -35,9 +35,14 @@ const Cards = styled.ul`
   }
 `;
 
-export const List = ({ loading, countries }) => {
+const styleOption = {
+  backgroundColor: "red"
+};
+
+export const List = ({ lastElement, loading, countries }) => {
   const navigate = useNavigate();
   const { view } = useSelector((state) => state.app);
+  const { limit } = useSelector((state) => state.country.countries);
 
   const defineClasses = () => {
     let classes = "";
@@ -57,51 +62,83 @@ export const List = ({ loading, countries }) => {
 
   return (
     <Cards className={defineClasses()}>
-      {countries?.map((country, index) => {
-        const countryInfo = {
-          img: country.flags.svg,
-          name: country.name,
-          info: [
-            {
-              title: "Population",
-              description: country.population.toLocaleString()
-            },
-            {
-              title: "Region",
-              description: country.region
-            },
-            {
-              title: "Capital",
-              description: country.capital
-            }
-          ]
-        };
+      {countries.length > limit - 1
+        ? countries?.map((country, index) => {
+            const countryInfo = {
+              img: country.flags.svg,
+              name: country.name,
+              info: [
+                {
+                  title: "Population",
+                  description: country.population.toLocaleString()
+                },
+                {
+                  title: "Region",
+                  description: country.region
+                },
+                {
+                  title: "Capital",
+                  description: country.capital
+                }
+              ]
+            };
 
-        if (countries.length - 1 === index) {
-          return (
-            <Card
-              // ref={lastElement}
-              onClick={() =>
-                navigate(`country/${country.name}`, { replace: true })
-              }
-              style={{ backgroundColor: "red" }}
-              view={view}
-              key={country.name}
-              {...countryInfo}
-            />
-          );
-        }
-        return (
-          <Card
-            onClick={() =>
-              navigate(`country/${country.name}`, { replace: true })
+            if (countries.length - 1 === index) {
+              return (
+                <Card
+                  lastElement={lastElement}
+                  onClick={() =>
+                    navigate(`country/${country.name}`, { replace: true })
+                  }
+                  styleOption={styleOption}
+                  view={view}
+                  key={country.name}
+                  {...countryInfo}
+                />
+              );
             }
-            view={view}
-            key={country.name}
-            {...countryInfo}
-          />
-        );
-      })}
+            return (
+              <Card
+                onClick={() =>
+                  navigate(`country/${country.name}`, { replace: true })
+                }
+                view={view}
+                key={country.name}
+                {...countryInfo}
+              />
+            );
+          })
+        : countries?.map((country) => {
+            const countryInfo = {
+              img: country.flags.svg,
+              name: country.name,
+              info: [
+                {
+                  title: "Population",
+                  description: country.population.toLocaleString()
+                },
+                {
+                  title: "Region",
+                  description: country.region
+                },
+                {
+                  title: "Capital",
+                  description: country.capital
+                }
+              ]
+            };
+
+            return (
+              <Card
+                onClick={() =>
+                  navigate(`country/${country.name}`, { replace: true })
+                }
+                view={view}
+                key={country.name}
+                {...countryInfo}
+              />
+            );
+          })}
     </Cards>
   );
 };

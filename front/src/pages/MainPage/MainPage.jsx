@@ -3,8 +3,7 @@ import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { Container } from "components/ui";
-import { ScrollButton } from "components/ui/ScrollTop";
+import { Container, ScrollButton } from "components/ui";
 
 import { useDispatchedActions } from "hooks";
 
@@ -16,34 +15,40 @@ const Wrapper = styled.div`
   padding-top: 2rem;
 `;
 
+let currentPage = 1;
+
 const MainPage = () => {
   const { countries } = useSelector((state) => state.country);
-  const { data, currentPage, total, limit } = countries;
-  const lastElement = useRef();
+  const { data, total, limit } = countries;
+  const lastElement = useRef(null);
   const observer = useRef();
   const { search, region } = useSelector((state) => state.country);
 
   // Dispatch
-  const { getCountriesByPageAndLimit, clearCountries, defaultCurrentPage } =
-    useDispatchedActions();
+  const { getCountriesByPageAndLimit, clearCountries } = useDispatchedActions();
+
+  const addingSearchOrFilter = (limit, search, region) => {
+    currentPage = 1;
+    clearCountries();
+    getCountriesByPageAndLimit({ currentPage, limit, search, region });
+    currentPage += 1;
+  };
 
   useEffect(() => {
-    if (search && region === null) {
-      clearCountries();
-      defaultCurrentPage();
-      getCountriesByPageAndLimit({ currentPage, limit, search });
-    } else if (!search && region !== null) {
-      clearCountries();
-      defaultCurrentPage();
-      getCountriesByPageAndLimit({ currentPage, limit, region });
+    if (search && !region) {
+      addingSearchOrFilter(limit, search, null);
     }
-    if (search && region !== null) {
-      clearCountries();
-      defaultCurrentPage();
-      getCountriesByPageAndLimit({ currentPage, limit, region, search });
+    if (!search && region) {
+      addingSearchOrFilter(limit, "", region);
+    }
+    if (search && region) {
+      addingSearchOrFilter(limit, search, region);
+    }
+    if (!search && !region) {
+      addingSearchOrFilter(limit, search, region);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, region]);
+  }, [search.length, region]);
 
   // Infinity scroll
   useEffect(() => {
@@ -52,11 +57,14 @@ const MainPage = () => {
     const callback = (entries) => {
       if (entries[0].isIntersecting && total > data.length) {
         getCountriesByPageAndLimit({ currentPage, limit, region, search });
+        currentPage += 1;
       }
     };
     // eslint-disable-next-line no-undef
     observer.current = new IntersectionObserver(callback);
-    observer.current.observe(lastElement.current);
+    if (lastElement.current !== null) {
+      observer.current.observe(lastElement.current);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countries.isLoading]);
 
@@ -65,14 +73,10 @@ const MainPage = () => {
       <Container>
         <Controls />
         <List
-          // lastElement={lastElement}
+          lastElement={lastElement}
           loading={countries.isLoading}
           countries={countries.data}
         />
-        <div
-          ref={lastElement}
-          style={{ height: 20, backgroundColor: "transparent" }}
-        ></div>
         <ScrollButton />
       </Container>
     </Wrapper>

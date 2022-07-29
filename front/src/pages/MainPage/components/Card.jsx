@@ -124,8 +124,21 @@ const Wrapper = styled.li`
   }
 `;
 
-export const Card = ({ view, img, name, info = [], onClick }) => (
-  <Wrapper className={view === "list" ? "list" : "grid"} onClick={onClick}>
+export const Card = ({
+  styleOption,
+  lastElement,
+  view,
+  img,
+  name,
+  info = [],
+  onClick
+}) => (
+  <Wrapper
+    style={styleOption}
+    ref={lastElement}
+    className={view === "list" ? "list" : "grid"}
+    onClick={onClick}
+  >
     <CardImage src={img} alt={name} />
     <CardBody>
       <CardTitle>{name}</CardTitle>

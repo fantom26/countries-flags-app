@@ -8,7 +8,6 @@ const initialState = {
     data: [],
     total: 1,
     limit: 16,
-    currentPage: 1,
     regions: [],
     isLoading: false,
     isFetchError: null
@@ -23,9 +22,6 @@ const CountryReducer = createSlice({
   reducers: {
     clearCountries(state) {
       state.countries.data = [];
-    },
-    defaultCurrentPage(state) {
-      state.countries.currentPage = 1;
     },
     searchHandler(state, action) {
       state.search = action.payload;
@@ -48,10 +44,7 @@ const CountryReducer = createSlice({
         ...action.payload.countries
       ];
       state.countries.regions = [...action.payload.regions];
-      state.countries.currentPage += 1;
-      if (state.countries.total === 1) {
-        state.countries.total = action.payload.total;
-      }
+      state.countries.total = action.payload.total;
       state.countries.isLoading = false;
     }
   }

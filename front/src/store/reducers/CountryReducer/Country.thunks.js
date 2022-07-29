@@ -23,7 +23,7 @@ export const getCountriesByPageAndLimit = createAsyncThunk(
         const response = await CountryService.getCountriesByPageAndLimit(
           currentPage,
           limit,
-          region,
+          null,
           search
         );
 
