@@ -47,10 +47,14 @@ export const Search = () => {
 
   const { searchHandler } = useDispatchedActions();
 
+  const handlerChange = (e) => {
+    searchHandler(e.target.value);
+  };
+
   return (
     <InputContainer>
       <IconSvg tag="search" />
-      <Input onChange={(e) => searchHandler(e.target.value)} value={search} />
+      <Input onChange={handlerChange} value={search} />
     </InputContainer>
   );
 };

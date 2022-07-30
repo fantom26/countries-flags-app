@@ -1,8 +1,26 @@
 import { DarkThemeProvider } from "providers/DarkThemeProvider";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { backgroundColor, textColor } from "theme";
 
 import { Router } from "components/common";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    &::-webkit-scrollbar {
+      width: 1rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: ${backgroundColor};
+      outline: 1px solid ${textColor};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: ${textColor};
+      border-radius: 1rem;
+    }
+  }
+  `;
 
 const Wrapper = styled.div`
   background-color: ${backgroundColor};
@@ -18,6 +36,7 @@ const Wrapper = styled.div`
 export const App = () => (
   <>
     <DarkThemeProvider>
+      <GlobalStyle />
       <Wrapper>
         <Router />
       </Wrapper>
