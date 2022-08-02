@@ -28,10 +28,18 @@ const CountryPage = () => {
     );
   }, [name]);
 
+  const handlerBack = () => {
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate("/", { replace: true });
+    }
+  };
+
   return (
     <CountrySection>
       <Container>
-        <Button onClick={() => navigate(-1)}>
+        <Button onClick={handlerBack}>
           <IconSvg tag="arrowBack" />
           <span>Back</span>
         </Button>

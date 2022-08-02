@@ -1,6 +1,6 @@
-import { LoaderSvgSelector } from "images/loaderSvgSelector";
 import styled from "styled-components";
 import { backgroundColor } from "theme";
+import { IconSvg } from "utils/constants";
 
 const Edge = styled.div`
   background-color: ${backgroundColor};
@@ -49,10 +49,10 @@ export const Loader = () => (
   <>
     <Edge>
       <SvgInner>
-        <LoaderSvgSelector id="loader--1" />
+        <IconSvg tag="loader1" />
       </SvgInner>
       <SvgInner>
-        <LoaderSvgSelector id="loader--2" />
+        <IconSvg tag="loader2" />
       </SvgInner>
     </Edge>
   </>

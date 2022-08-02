@@ -1,4 +1,4 @@
-import { DarkThemeProvider } from "providers/DarkThemeProvider";
+import { DarkThemeProvider } from "providers";
 import styled, { createGlobalStyle } from "styled-components";
 import { backgroundColor, textColor } from "theme";
 

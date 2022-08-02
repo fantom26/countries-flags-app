@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import { Header } from "components/common/";
+import { Loader } from "components/ui";
 
 const Main = styled.main`
   flex-grow: 1;
@@ -17,7 +17,8 @@ export const IndexLayout = () => {
   // Handling error
   useEffect(() => {
     if (countries.isFetchError) {
-      toast.error("Error with fetching data");
+      // eslint-disable-next-line no-console
+      console.log("Error with fetching data");
     }
   }, [countries.isFetchError]);
 
@@ -25,7 +26,9 @@ export const IndexLayout = () => {
     <>
       <Header />
       <Main>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </Main>
     </>
   );

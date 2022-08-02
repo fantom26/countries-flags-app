@@ -1,10 +1,11 @@
+import { DebounceInput } from "react-debounce-input";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { backgroundColor, shadowColor, textColor } from "theme";
 
 import { useDispatchedActions } from "hooks";
 
-import { AdaptiveFont } from "utils/adaptiveFont";
+import { AdaptiveFont } from "utils/helpers/adaptiveFont.helper";
 import { IconSvg } from "utils/constants";
 
 const InputContainer = styled.label`
@@ -27,7 +28,7 @@ const InputContainer = styled.label`
   }
 `;
 
-const Input = styled.input.attrs({
+const Input = styled(DebounceInput).attrs({
   type: "search",
   placeholder: "Search for a country"
 })`
@@ -47,14 +48,15 @@ export const Search = () => {
 
   const { searchHandler } = useDispatchedActions();
 
-  const handlerChange = (e) => {
-    searchHandler(e.target.value);
-  };
-
   return (
     <InputContainer>
       <IconSvg tag="search" />
-      <Input onChange={handlerChange} value={search} />
+      <Input
+        minLength={1}
+        debounceTimeout={300}
+        onChange={(event) => searchHandler(event.target.value)}
+        value={search}
+      />
     </InputContainer>
   );
 };

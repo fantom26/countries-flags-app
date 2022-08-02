@@ -35,10 +35,6 @@ const Cards = styled.ul`
   }
 `;
 
-const styleOption = {
-  backgroundColor: "red"
-};
-
 export const List = ({ lastElement, loading, countries }) => {
   const navigate = useNavigate();
   const { view } = useSelector((state) => state.app);
@@ -90,7 +86,6 @@ export const List = ({ lastElement, loading, countries }) => {
                   onClick={() =>
                     navigate(`country/${country.name}`, { replace: true })
                   }
-                  styleOption={styleOption}
                   view={view}
                   key={country.name}
                   {...countryInfo}

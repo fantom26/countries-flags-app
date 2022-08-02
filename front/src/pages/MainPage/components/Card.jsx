@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { backgroundColor, shadowColor } from "theme";
 
-import { AdaptiveFont } from "utils/adaptiveFont";
+import { AdaptiveFont } from "utils/helpers/adaptiveFont.helper";
 
 const CardImage = styled.img`
   box-shadow: ${shadowColor};

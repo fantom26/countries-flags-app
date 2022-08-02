@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { CountryService } from "services/CountryService";
 
-import { AdaptiveFont } from "utils/adaptiveFont";
+import { AdaptiveFont } from "utils/helpers/adaptiveFont.helper";
 
 import { Meta } from "./Meta";
 

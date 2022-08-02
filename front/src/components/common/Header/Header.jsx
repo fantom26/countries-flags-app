@@ -4,7 +4,7 @@ import { backgroundColor, shadowColor, textColor } from "theme";
 
 import { Container } from "components/ui";
 
-import { AdaptiveFont } from "utils/adaptiveFont";
+import { AdaptiveFont } from "utils/helpers/adaptiveFont.helper";
 
 import { DarkThemeToggle } from "./components/DarkThemeToggle";
 

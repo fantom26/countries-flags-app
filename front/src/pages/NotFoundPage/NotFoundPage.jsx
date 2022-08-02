@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Header } from "components/common";
 import { Container } from "components/ui";
 
-import { AdaptiveFont } from "utils/adaptiveFont";
+import { AdaptiveFont } from "utils/helpers/adaptiveFont.helper";
 
 const Main = styled.main`
   align-items: center;

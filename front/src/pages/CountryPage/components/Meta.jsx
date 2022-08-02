@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { backgroundColor, shadowColor } from "theme";
 
-import { AdaptiveFont } from "utils/adaptiveFont";
+import { AdaptiveFont } from "utils/helpers/adaptiveFont.helper";
 
 const ListItemTitle = styled.h2`
   ${AdaptiveFont({ pcSize: 18, mobSize: 16 })};

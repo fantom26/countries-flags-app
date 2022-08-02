@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { shadowColor, textColor } from "theme";
 
-import { AdaptiveFont } from "utils/adaptiveFont";
+import { AdaptiveFont } from "utils/helpers/adaptiveFont.helper";
 
 export const Button = styled.button`
   align-items: center;
